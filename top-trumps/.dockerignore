@@ -1,0 +1,8 @@
+.git
+tests
+outils
+__pycache__
+*.md
+data/parties.json
+data/sauvegardes.json
+data/portefeuilles.json

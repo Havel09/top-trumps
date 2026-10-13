@@ -1,0 +1,17 @@
+# Top Trump - Créatures Fantastiques
+#
+# Un conteneur suffit : le serveur PHP intégré sert les pages et l'API.
+# Le port hôte 8123 correspond à celui que les tests utilisent par défaut.
+# Le dossier data/ est partagé avec la machine hôte : le classement, les
+# sauvegardes et les portefeuilles de pièces survivent aux redémarrages.
+
+services:
+  web:
+    build: .
+    image: top-trumps:latest
+    container_name: top-trumps
+    ports:
+      - "8123:8000"
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

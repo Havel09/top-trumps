@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Trump - Créatures Fantastiques</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-jeu">
+
+  <header class="barre-jeu">
+    <div class="barre-jeu__gauche">
+      <a class="retour" href="index.html" title="Retour au menu">← Menu</a>
+      <div class="barre-jeu__titres">
+        <h1 id="titre-partie">Partie</h1>
+        <p id="qui-joue" class="barre-jeu__sous-titre"></p>
+      </div>
+    </div>
+    <div class="barre-jeu__droite">
+      <span id="indicateur-sauvegarde" class="vignette" role="status">Sauvegardé</span>
+      <button type="button" id="btn-son" class="bouton bouton--compact bouton--son" aria-pressed="true" aria-label="Couper le son">
+        <svg class="icone-son icone-son--allume" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             aria-hidden="true" focusable="false">
+          <path d="M11 5 L6 9 H2 V15 H6 L11 19 V5 Z"/>
+          <path d="M14 8.6 L18.6 12 L14 15.4 Z"/>
+          <path d="M17.6 5.9 L23.4 12 L17.6 18.1 Z"/>
+        </svg>
+        <svg class="icone-son icone-son--muet" viewBox="0 0 24 24"
+             xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+             aria-hidden="true" focusable="false">
+          <path d="M11 5 L6 9 H2 V15 H6 L11 19 V5 Z"/>
+          <path d="M5.5 2 L8 4.5 L22 18.5 L19.5 21 Z"/>
+        </svg>
+        <span class="bouton-son__libelle">Son</span>
+      </button>
+    </div>
+  </header>
+
+  <div id="erreur" class="alerte" role="alert" hidden></div>
+
+  <!-- Proposition de reprise d'une partie sauvegardée -->
+  <div id="sauvegarde" class="reprise" hidden>
+    <div class="reprise__boite">
+      <h2>Une partie est en attente</h2>
+      <p>
+        Une partie sauvegardée le <strong id="sauvegarde-quand"></strong>
+        n'a pas été terminée.
+      </p>
+      <div class="reprise__actions">
+        <button type="button" id="btn-reprendre" class="bouton bouton--principal">Reprendre</button>
+        <button type="button" id="btn-ignorer" class="bouton">Repartir de zéro</button>
+      </div>
+    </div>
+  </div>
+
+  <main id="contenu" class="table-jeu">
+
+    <!-- Colonne gauche : les deux mains, puis l'historique sous les mains -->
+    <div class="colonne-mains">
+
+      <section class="main main--adversaire" aria-label="Main de l'adversaire">
+        <h2 class="main__titre" id="titre-main-adversaire">Adversaire</h2>
+        <div id="main-adversaire" class="main__cartes"></div>
+      </section>
+
+      <section class="main main--joueur" aria-label="Votre main">
+        <h2 class="main__titre" id="titre-main-joueur">Votre main</h2>
+        <div id="main-joueur" class="main__cartes"></div>
+      </section>
+
+      <section class="journal-zone">
+        <h2 class="journal-zone__titre">Historique</h2>
+        <div id="journal" class="journal"></div>
+      </section>
+
+    </div>
+
+    <!-- Colonne droite : la zone de jeu -->
+    <div class="colonne-jeu">
+
+      <!-- Points des deux joueurs, en haut de la zone de jeu -->
+      <section id="score" class="zone-score" aria-label="Scores"></section>
+
+      <!-- Étiquette de tour, en mode duel -->
+      <p id="cadre-duel" class="etiquette-duel" hidden>
+        <span id="tour-debouche"></span>
+      </p>
+
+      <!-- Message d'étape : attribut en cours, résultat du tour -->
+      <p id="message" class="message" role="status" aria-live="polite"></p>
+
+      <!-- Zone principale : choix de l'attribut ou comparaison des cartes jouées -->
+      <section id="tableau" class="zone-tableau" aria-live="polite"></section>
+
+      <p id="aide-tour" class="aide"></p>
+
+    </div>
+
+  </main>
+
+  <!-- Écran de fin de partie, injecté par l'interface -->
+  <div id="zone-fin" class="zone-fin"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/regles.js"></script>
+  <script src="js/ia.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/interface.js"></script>
+  <script src="js/jeu.js"></script>
+</body>
+</html>
