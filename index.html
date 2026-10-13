@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top Trump - Créatures Fantastiques</title>
+  <meta name="description" content="Un jeu de cartes Top Trump sur le thème des créatures fantastiques : 32 cartes, 5 attributs, trois niveaux d'ordinateur.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-accueil">
+
+  <header class="entete">
+    <p class="entete__surtitre">Créatures Fantastiques</p>
+    <h1 class="entete__titre">Top&nbsp;Trump</h1>
+    <p class="entete__baseline">
+      32 créatures. 5 attributs. Une seule règle&nbsp;: la plus forte l'emporte.
+    </p>
+    <p class="solde" title="Vos pièces">
+      <svg class="solde__icone" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+           fill="currentColor" focusable="false" aria-hidden="true">
+        <circle cx="12" cy="12" r="9.5"/>
+        <circle cx="12" cy="12" r="6.5"/>
+        <path d="M12 6.8 L13.4 10.2 L17 10.3 L14.2 12.5 L15.3 16 L12 13.9 L8.7 16
+                L9.8 12.5 L7 10.3 L10.6 10.2 Z"/>
+      </svg>
+      <span id="solde-pieces" class="solde__nombre">…</span>
+      <span class="solde__libelle">pièces</span>
+    </p>
+  </header>
+
+  <main class="accueil">
+
+    <section class="panneau" id="formulaire" hidden>
+      <h2 class="panneau__titre">Préparer la partie</h2>
+
+      <form id="config" novalidate>
+        <div class="champ">
+          <label for="nom-joueur">Votre nom</label>
+          <input type="text" id="nom-joueur" name="nom" maxlength="20"
+                 autocomplete="nickname" placeholder="Ex. Alix" required>
+        </div>
+
+        <div class="champ" id="champ-adversaire" hidden>
+          <label for="nom-adversaire">Nom du second joueur</label>
+          <input type="text" id="nom-adversaire" name="adversaire" maxlength="20"
+                 autocomplete="off" placeholder="Ex. Camille">
+        </div>
+
+        <fieldset class="champ" id="champ-niveau">
+          <legend>Niveau de l'ordinateur</legend>
+          <div class="choix" role="radiogroup" aria-label="Niveau de l'ordinateur">
+            <label class="choix__option">
+              <input type="radio" name="niveau" value="facile" checked>
+              <span class="choix__nom">Novice</span>
+              <span class="choix__detail">Joue surtout au hasard.</span>
+            </label>
+            <label class="choix__option">
+              <input type="radio" name="niveau" value="normal">
+              <span class="choix__nom">Tacticien</span>
+              <span class="choix__detail">Estime votre main et joue ses points forts.</span>
+            </label>
+            <label class="choix__option">
+              <input type="radio" name="niveau" value="difficile">
+              <span class="choix__nom">Oracle</span>
+              <span class="choix__detail">Suit le paquet et réserve ses meilleures cartes.</span>
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit" class="bouton bouton--principal bouton--large">
+          Commencer la partie
+        </button>
+      </form>
+    </section>
+
+    <section class="panneau">
+      <h2 class="panneau__titre">Choisir un mode</h2>
+      <div class="modes">
+
+        <button class="mode" type="button" data-mode="ia">
+          <span class="mode__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" focusable="false">
+              <path d="M12 1.6 C13.5 4.2 14.3 6.8 14.3 9 H9.7 C9.7 6.8
+                       10.5 4.2 12 1.6 Z"/>
+              <path d="M3 9.4 H21 V12 H3 Z"/>
+              <path d="M10.7 12.2 H13.3 V18.2 C13.3 18.5 13 18.8 12 18.8
+                       C11 18.8 10.7 18.5 10.7 18.2 Z"/>
+              <path d="M9.1 19.1 H14.9 V21.4 C14.9 21.7 14.6 22 12 22
+                       C9.4 22 9.1 21.7 9.1 21.4 Z"/>
+            </svg>
+          </span>
+          <span class="mode__nom">Contre l'ordinateur</span>
+          <span class="mode__detail">
+            Un joueur contre l'IA, à trois niveaux de difficulté.
+          </span>
+        </button>
+
+        <button class="mode" type="button" data-mode="duel">
+          <span class="mode__icone" aria-hidden="true">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                 fill="currentColor" focusable="false">
+              <path d="M2 2.2 L10 3.4 V9.3 C10 13 8.4 15.8 6 17
+                       C3.6 15.8 2 13 2 9.3 V3.4 Z"/>
+              <path d="M14 2.2 L22 3.4 V9.3 C22 13 20.4 15.8 18 17
+                       C15.6 15.8 14 13 14 9.3 V3.4 Z"/>
+            </svg>
+          </span>
+          <span class="mode__nom">Deux joueurs</span>
+          <span class="mode__detail">
+            Sur la même machine. Les mains sont masquées tant que ce n'est
+            pas votre tour.
+          </span>
+        </button>
+
+      </div>
+
+      <p class="modes__note">
+        La partie se sauvegarde toute seule&nbsp;: fermez l'onglet en cours de
+        route, vous la retrouverez.
+      </p>
+    </section>
+
+    <section class="panneau">
+      <h2 class="panneau__titre">Le jeu en bref</h2>
+      <ol class="etapes">
+        <li>
+          <strong>Choisir un attribut.</strong> Le vainqueur du tour précédent
+          le désigne&nbsp;: Force, Vitesse, Intelligence, Magie ou Endurance.
+        </li>
+        <li>
+          <strong>Choisir sa carte.</strong> Chacun pose la carte de sa main
+          qu'il veut opposer sur cet attribut.
+        </li>
+        <li>
+          <strong>Gagner les cartes.</strong> La valeur la plus haute - bonus
+          du pouvoir compris - emporte les deux cartes, qui rejoignent le bas
+          du paquet du vainqueur.
+        </li>
+      </ol>
+      <p class="panneau__pied">
+        <a class="lien" href="regles.html">Lire les règles complètes</a>
+        ·
+        <a class="lien" href="collection.html">Voir les 32 cartes</a>
+        ·
+        <a class="lien" href="galerie.html">Ma galerie</a>
+        ·
+        <a class="lien" href="booster.html">Ouvrir des boosters</a>
+        ·
+        <a class="lien" href="classement.html">Consulter le classement</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="pied">
+    <p>
+      Projet Web - HTML, CSS, JavaScript et PHP.
+      <span id="version-jeu"></span>
+    </p>
+  </footer>
+
+  <script src="js/api.js"></script>
+  <script src="js/portefeuille.js"></script>
+  <script src="js/accueil.js"></script>
+</body>
+</html>
